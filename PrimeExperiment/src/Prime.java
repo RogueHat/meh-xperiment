@@ -25,7 +25,9 @@ public class Prime {
 	private boolean isPrime(int x){
 		//for(int y=0;list[y+1]!=0;y++)
 		//	if(x%list[y]==0)return false;
-		for(int y=2;y<=Math.sqrt(x);y++)
+		int blarg=Math.sqrt(x);
+		
+		for(int y=2;y<=blarg;y++)
 			if(x%y==0)return false;
 		return true;
 	}
