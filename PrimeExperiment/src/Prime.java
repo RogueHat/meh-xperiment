@@ -1,53 +1,43 @@
 import java.util.Arrays;
 
-
 public class Prime {
 	private int limit;
-	private int list[];
-	
-	public Prime(int lim){
-		limit=lim;
-		list=new int[lim];
-		list[0]=2;
+	private static int list[];
+
+	public Prime(int lim) {
+		limit = lim;
+		list = new int[lim];
+		list[0] = 2;
 	}
-	public int[] calc(){
-		int count=1, testNum=3;
-		while(count<limit){
-			if(isPrime(testNum/*,count*/)){
-				list[count]=testNum;
-				//System.out.println(testNum);
+
+	public void calc() {
+		int count = 1, testNum = 3;
+		while (count < limit) {
+			if (isPrime(testNum)) {
+				list[count] = testNum;
 				count++;
 			}
-			testNum+=2;
+			testNum += 2;
 		}
-		return list;
 	}
-	private boolean isPrime(int x){
-		//for(int y=0;list[y+1]!=0;y++)
-		//	if(x%list[y]==0)return false;
-		int blarg=Math.sqrt(x);
-		
-		for(int y=2;y<=blarg;y++)
-			if(x%y==0)return false;
+
+	private boolean isPrime(int x) {
+		int a = (int) Math.sqrt(x);
+		for (int y = 3; y <= a; y += 2)
+			if (x % y == 0)
+				return false;
 		return true;
 	}
-	
-	
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		int a = (int) System.currentTimeMillis();
-		Prime meh = new Prime(1000000);
+		Prime meh = new Prime((int) 1E6);
 		meh.calc();
-		//System.out.println(Arrays.toString(meh.calc()));
-		
-		a = (int) System.currentTimeMillis()- a;
-		System.out.println(a);
-		
-		
+		a = (int) System.currentTimeMillis() - a;
+		System.out.print(a+"\t");
+		//System.out.println(Arrays.toString(list));
 	}
-
 }
