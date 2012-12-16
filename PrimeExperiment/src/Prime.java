@@ -43,13 +43,13 @@ public class Prime {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		int ha = (int) 1E6;
+		int ha = (int) 1E8;
 		Prime meh = new Prime(ha);
 		
 		//while(true){
 			long a =  System.currentTimeMillis();
 			meh.calc();
-			a =  System.currentTimeMillis() - a;
+			a = (System.currentTimeMillis() - a)/1000/60;
 			System.out.println(a + "\t");
 			// System.out.println(Arrays.toString(list));
 			meh.reset(ha);
