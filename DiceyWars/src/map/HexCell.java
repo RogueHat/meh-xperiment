@@ -11,7 +11,9 @@ public class HexCell {
 		x=xp;
 		y=yp;
 		clr=Color.white;
-		if(int y);
+		
+		if(y%2==0)isEvenRow=true;
+		else isEvenRow=aflse;
 	}
 	public HexCell(int xp,int yp,Color color){
 		this(xp,yp);
