@@ -21,9 +21,9 @@ public class Board {
 		return false;
 	}
 	
-	public int countHoriz(int x, int y){
-		if(board[x][y]==null)return 0;
-		if(board[x][y].getCol()==)
+	public int countHoriz(int x, int y, Color col){
+		if(board[x][y]==null||board[x][y].getCol()!=col)return 0;
+		
 		return y;
 	}
 }
