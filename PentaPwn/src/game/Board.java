@@ -4,6 +4,7 @@ import java.awt.Color;
 
 public class Board {
 	private Location[][] board;
+	private Color winner;
 	public Board(){
 		board = new Location[6][6];
 		clearBoard();
@@ -20,10 +21,18 @@ public class Board {
 		}
 		return false;
 	}
+
 	
-	public int countHoriz(int x, int y, Color col){
-		if(board[x][y]==null||board[x][y].getCol()!=col)return 0;
-		
-		return y;
+	public Color checkHoriz(int x, int y){
+		Color col = board[x][y].getCol();
+		for(int i=x;i<5+x;i++)
+			if(board[i][y].getCol()!=col)return Color.white;
+		return col;
+	}
+	public Color checkVert(int x, int y){
+		Color col = board[x][y].getCol();
+		for(int i=y;i<5+y;i++)
+			if(board[x][i].getCol()!=col)return Color.white;
+		return col;
 	}
 }
