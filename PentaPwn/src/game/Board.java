@@ -1,38 +1,49 @@
 package game;
 
-import java.awt.Color;
+import java.util.ArrayList;
 
 public class Board {
-	private Location[][] board;
-	private Color winner;
-	public Board(){
-		board = new Location[6][6];
+
+	private ArrayList<Marble> board = new ArrayList<Marble>();
+	private ArrayList<MiniBoard> miniBoards = new ArrayList<MiniBoard>();
+	
+	public Board() {
 		clearBoard();
+		setMiniBoards();
 	}
-	public void clearBoard(){
-		for(int x=0;x<6;x++)
-			for(int y=0;y<6;y++)
-				board[x][y]=new Location();
+
+	public void clearBoard() {
+		ArrayList<Marble> temp = new ArrayList<Marble>();
+		for (int x = 0; x < 6; x++)
+			for (int y = 0; y < 6; y++)
+				temp.add(new Marble(x, y));
+		board = temp;
 	}
-	public boolean put(int x,int y,Color col){
-		if(board[x][y].getCol()==Color.white){
-			board[x][y].setCol(col);
+	public void setMiniBoards(){
+		for(int x=0;x<4;x++)
+			miniBoards.add(new MiniBoard(x));
+	}
+	public void rotateMiniBoard(int quadrant,boolean turnLeft){
+		miniBoards.get(quadrant).rotate(turnLeft);
+	}
+
+	public Marble getMarble(int x, int y) {
+		for (Marble piece : board)
+			if (piece.isLoc(x, y))
+				return piece;
+		return null;
+	}
+
+	public boolean isOpenLoc(int x, int y) {
+		Marble piece = getMarble(x, y);
+		return piece.getState() == 0;
+	}
+	
+	public boolean placePiece(int x,int y, int player){
+		if(isOpenLoc(x,y)){
+			getMarble(x, y).setState(player);
 			return true;
 		}
 		return false;
-	}
-
-	
-	public Color checkHoriz(int x, int y){
-		Color col = board[x][y].getCol();
-		for(int i=x;i<5+x;i++)
-			if(board[i][y].getCol()!=col)return Color.white;
-		return col;
-	}
-	public Color checkVert(int x, int y){
-		Color col = board[x][y].getCol();
-		for(int i=y;i<5+y;i++)
-			if(board[x][i].getCol()!=col)return Color.white;
-		return col;
 	}
 }
