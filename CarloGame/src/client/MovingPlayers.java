@@ -60,7 +60,7 @@ public class MovingPlayers extends JPanel implements Runnable {
 		// TODO Auto-generated method stub
 		try {
 			while (true) {
-				Thread.currentThread().sleep(10);
+				Thread.currentThread().sleep(5);
 				check(10);
 				repaint();
 			}

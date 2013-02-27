@@ -19,7 +19,8 @@ public class GraphicsRunner extends JFrame implements Runnable
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 800;
 	
-	Network net = new Network();
+	private Network net = new Network();
+	private boolean hasMoved = false;
 	
 	private Player myPl;
 
@@ -29,6 +30,7 @@ public class GraphicsRunner extends JFrame implements Runnable
 		setSize(WIDTH,HEIGHT);
 		Color randColor = new Color((float)Math.random(),(float)Math.random(),(float)Math.random());
 		myPl = new Player((int)(Math.random()*WIDTH)+1,(int)(Math.random()*HEIGHT)+1,randColor);
+		net.send(myPl.toString());
 		//myPl = new Player();
 		getContentPane().add(new MovingPlayers(net));
 		this.addKeyListener(new KeySniff());
@@ -49,6 +51,7 @@ public class GraphicsRunner extends JFrame implements Runnable
 			case KeyEvent.VK_LEFT:	myPl.move(-spd, 0);	break;
 			case KeyEvent.VK_RIGHT:	myPl.move(spd, 0);	break;
 			}
+			hasMoved = true;
 			//System.out.println(e.getKeyCode());
 		}
 		@Override
@@ -70,9 +73,10 @@ public class GraphicsRunner extends JFrame implements Runnable
 		// TODO Auto-generated method stub
 		try {
 			while (true) {
-				Thread.currentThread().sleep(10);
-				//System.out.println(myPl);
-				net.send(myPl.toString());
+				Thread.currentThread().sleep(1);
+				for(int x = 0; x<2 && hasMoved; x++)
+					net.send(myPl.toString());
+				hasMoved = false;
 			}
 		} catch (Exception e) {
 		}
