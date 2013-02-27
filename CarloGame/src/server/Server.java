@@ -20,13 +20,16 @@ public class Server implements Runnable{
 	}
 	
 	public void check(int i) {
+		boolean newVals = false;
 		String line[];
 		for (int x = 0; x < i; x++) {
 			line = net.recieve(true).split(" ");
 			if (!line[1].contains("/")) {
 				playerStrings.put(line[0], line[1]+" "+line[2]+" "+line[3]);
+				newVals = true;
 			}
 		}
+		if(newVals)update();
 	}
 	
 	public void update(){
@@ -53,7 +56,7 @@ public class Server implements Runnable{
 			while (true) {
 				Thread.currentThread().sleep(10);
 				check(10);
-				update();
+				//update();
 			}
 		} catch (Exception e) {
 		}
