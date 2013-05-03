@@ -5,11 +5,13 @@ public class Cell {
 	private boolean alive;
 	
 	public Cell(){
-		alive = Math.random() <.02;
+		this(.5);
+	}
+	public Cell(double chance){
+		alive = Math.random() < chance;
 	}
 	public Cell(boolean stat){
 		alive = stat;
-		
 	}
 	
 	public boolean isAlive(){

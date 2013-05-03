@@ -4,13 +4,13 @@ public class World implements Runnable {
 	private Cell[][] world;
 	private int w, h;
 
-	public World(int xSize, int ySize) {
+	public World(int xSize, int ySize, double chance) {
 		w = xSize;
 		h = ySize;
 		world = new Cell[w][h];
 		for (int x = 0; x < w; x++)
 			for (int y = 0; y < h; y++)
-				world[x][y] = new Cell();
+				world[x][y] = new Cell(chance);
 		new Thread(this).start();
 	}
 
@@ -51,7 +51,7 @@ public class World implements Runnable {
 		// TODO Auto-generated method stub
 		while (true) {
 			try {
-				Thread.currentThread().sleep(1);
+				Thread.currentThread().sleep(10);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

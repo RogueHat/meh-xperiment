@@ -13,8 +13,8 @@ import java.awt.event.ActionListener;
 
 public class GraphicsRunner extends JFrame
 {
-	private static final int WIDTH = 1600;
-	private static final int HEIGHT = 900;
+	private static final int WIDTH = 1280;
+	private static final int HEIGHT = 800;
 
 	public GraphicsRunner()
 	{
@@ -22,10 +22,7 @@ public class GraphicsRunner extends JFrame
 
 		setSize(WIDTH,HEIGHT);
 
-		World w = new World(WIDTH,HEIGHT);
-		//getContentPane().add(new ShapePanel());
-
-		getContentPane().add(new GraphicWorld(w));
+		getContentPane().add(new GraphicWorld(this,2,.02));
 
 		setVisible(true);
 
