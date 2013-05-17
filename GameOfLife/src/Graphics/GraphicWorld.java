@@ -45,17 +45,18 @@ public class GraphicWorld extends JPanel implements Runnable {
 			for(int y = 0; y < world.getH(); y++){
 				window.setColor(Color.black);
 				if(table[x][y].isAlive())
-					window.setColor(Color.blue);
+					window.setColor(Color.magenta);
 				window.fillRect(x*size, y*size, size, size);
 			}
 		}
 		
 	}
+	
 
 	public void run() {
 		try {
 			while (true) {
-				Thread.currentThread().sleep(50);
+				Thread.currentThread().sleep(10);
 				repaint();
 			}
 		} catch (Exception e) {

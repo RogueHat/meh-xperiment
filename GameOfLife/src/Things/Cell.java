@@ -2,24 +2,31 @@ package Things;
 
 public class Cell {
 
-	private boolean alive;
-	
-	public Cell(){
+	private boolean currStat;
+	private boolean newStat;
+
+	public Cell() {
 		this(.5);
 	}
-	public Cell(double chance){
-		alive = Math.random() < chance;
+
+	public Cell(double chance) {
+		currStat = newStat = Math.random() < chance;
 	}
-	public Cell(boolean stat){
-		alive = stat;
+
+	public Cell(boolean stat) {
+		currStat = newStat = stat;
 	}
-	
-	public boolean isAlive(){
-		return alive;
+
+	public boolean isAlive() {
+		return currStat;
 	}
-	
-	public void set(boolean stat){
-		alive = stat;
+
+	public void set(boolean stat) {
+		newStat = stat;
+	}
+
+	public void update() {
+		currStat = newStat;
 	}
 
 }
