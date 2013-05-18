@@ -51,7 +51,7 @@ public class World implements Runnable {
 		// TODO Auto-generated method stub
 		while (true) {
 			try {
-				Thread.currentThread().sleep(0);
+				Thread.currentThread().sleep(10);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
