@@ -42,11 +42,12 @@ public class GraphicWorld extends JPanel implements Runnable {
 	}
 
 	public void paint(Graphics window) {
-		window.setColor(Color.black);
+		//window.setColor(Color.black);
+		window.setColor(new Color((float)Math.random(),(float)Math.random(),(float)Math.random()));
 		window.fillRect(0, 0, grphics.getWidth(),grphics.getHeight());
 		for(int x = 0; x < world.getW(); x++){
 			for(int y = 0; y < world.getH(); y++){
-				window.setColor(Color.magenta);
+				window.setColor(new Color((float)Math.random(),(float)Math.random(),(float)Math.random()));
 				if(table[x][y].isAlive())
 					window.fillRect(x*size, y*size, size, size);
 			}

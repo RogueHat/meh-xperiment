@@ -28,5 +28,6 @@ public class Cell {
 	public void update() {
 		currStat = newStat;
 	}
+	
 
 }
