@@ -10,6 +10,7 @@ import Things.World;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class GraphicsRunner extends JFrame
 {
@@ -22,7 +23,8 @@ public class GraphicsRunner extends JFrame
 
 		setSize(WIDTH,HEIGHT);
 
-		getContentPane().add(new GraphicWorld(this,2,.1));
+		//getContentPane().add(new GraphicWorld(this,2,.1));
+		getContentPane().add(new GraphicWorld(this,2, new File("points.txt")));
 
 		setVisible(true);
 

@@ -17,6 +17,7 @@ import Things.World;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class GraphicWorld extends JPanel implements Runnable {
 	private World world;
@@ -34,6 +35,16 @@ public class GraphicWorld extends JPanel implements Runnable {
 		grphics = gr;
 		size = s;
 		world = new World(gr.getWidth()/size,gr.getHeight()/size, chance);
+		table = world.getWorld();
+		new Thread(this).start();
+	}
+	
+	public GraphicWorld(GraphicsRunner gr, int s, File file) {
+		setBackground(Color.black);
+		setVisible(true);
+		grphics = gr;
+		size = s;
+		world = new World(gr.getWidth()/size,gr.getHeight()/size, file);
 		table = world.getWorld();
 		new Thread(this).start();
 	}

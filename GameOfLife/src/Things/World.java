@@ -1,13 +1,39 @@
 package Things;
 
+import java.awt.Color;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class World implements Runnable {
 	private Cell[][] world;
 	private int w, h;
 
-	public World(int xSize, int ySize, double chance) {
+	public World(int xSize, int ySize) {
 		w = xSize;
 		h = ySize;
 		world = new Cell[w][h];
+	}
+
+	public World(int xSize, int ySize, File file) {
+		this(xSize, ySize);
+		for (int x = 0; x < w; x++)
+			for (int y = 0; y < h; y++)
+				world[x][y] = new Cell(false);
+		
+		try {
+			Scanner scan = new Scanner(file);
+			while (scan.hasNext())
+				world[scan.nextInt()][scan.nextInt()] = new Cell(true);
+			scan.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public World(int xSize, int ySize, double chance) {
+		this(xSize, ySize);
 		for (int x = 0; x < w; x++)
 			for (int y = 0; y < h; y++)
 				world[x][y] = new Cell(chance);
