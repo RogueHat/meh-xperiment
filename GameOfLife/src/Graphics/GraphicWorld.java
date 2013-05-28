@@ -23,6 +23,7 @@ public class GraphicWorld extends JPanel implements Runnable {
 	private Cell[][] table;
 	private int size;
 	private GraphicsRunner grphics;
+	private int mode = 0;
 	
 	// use an array of Molecule
 	// Molecule[] molecules;
@@ -42,12 +43,13 @@ public class GraphicWorld extends JPanel implements Runnable {
 	}
 
 	public void paint(Graphics window) {
-		//window.setColor(Color.black);
-		window.setColor(new Color((float)Math.random(),(float)Math.random(),(float)Math.random()));
+		if (mode != 2) window.setColor(Color.black);
+		else window.setColor(new Color((float)Math.random(),(float)Math.random(),(float)Math.random()));
 		window.fillRect(0, 0, grphics.getWidth(),grphics.getHeight());
+		if(mode == 0) window.setColor(Color.white);
 		for(int x = 0; x < world.getW(); x++){
 			for(int y = 0; y < world.getH(); y++){
-				window.setColor(new Color((float)Math.random(),(float)Math.random(),(float)Math.random()));
+				if(mode != 0) window.setColor(new Color((float)Math.random(),(float)Math.random(),(float)Math.random()));
 				if(table[x][y].isAlive())
 					window.fillRect(x*size, y*size, size, size);
 			}
