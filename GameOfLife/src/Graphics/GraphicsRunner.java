@@ -22,12 +22,12 @@ public class GraphicsRunner extends JFrame
 		super("Game of No Life");
 
 		setSize(WIDTH,HEIGHT);
-		int size = 5;
+		int size = 2;
 		
 		World world = new World(WIDTH/size,HEIGHT/size);
-		world.insertPattern(0, 0, new File("points.txt"),1);
-		world.insertPattern(133, 100, new File("points.txt"),-1);
-		//world.insertPattern(WIDTH/size/2, HEIGHT/size/2, new File("f-pentomino"),1);
+		world.insertPattern(0, 0, new File("points.txt"));
+		world.insertPattern(0, -351, new File("points.txt"));
+//		world.insertPattern(WIDTH/size/2, HEIGHT/size/2, new File("f-pentomino"));
 		world.start();
 //		new GraphicWorld(this,2,.1);
 		getContentPane().add(new GraphicWorld(this,size,world));

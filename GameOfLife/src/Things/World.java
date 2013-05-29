@@ -20,14 +20,14 @@ public class World implements Runnable {
 
 	public World(int xSize, int ySize, File file) {
 		this(xSize, ySize);
-		insertPattern(0,0,file,1);
+		insertPattern(0,0,file);
 	}
 
-	public void insertPattern(int xCen, int yCen, File file, int flip){
+	public void insertPattern(int xCen, int yCen, File file){
 		try {
 			Scanner scan = new Scanner(file);
 			while (scan.hasNext())
-				world[scan.nextInt()*flip+xCen][scan.nextInt()*flip+yCen] = new Cell(true);
+				world[Math.abs(scan.nextInt()+xCen)][Math.abs(scan.nextInt()+yCen)] = new Cell(true);
 			scan.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -82,7 +82,7 @@ public class World implements Runnable {
 		// TODO Auto-generated method stub
 		while (true) {
 			try {
-				Thread.currentThread().sleep(10);
+				Thread.currentThread().sleep(5);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
