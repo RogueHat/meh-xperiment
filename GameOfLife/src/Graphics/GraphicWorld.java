@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 import Things.Cell;
 import Things.World;
-
+import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -24,7 +24,7 @@ public class GraphicWorld extends JPanel implements Runnable {
 	private Cell[][] table;
 	private int size;
 	private GraphicsRunner grphics;
-	private int mode = 0;
+	int brand = 0;
 	
 	// use an array of Molecule
 	// Molecule[] molecules;
@@ -40,6 +40,7 @@ public class GraphicWorld extends JPanel implements Runnable {
 	}
 	
 	public GraphicWorld(GraphicsRunner gr, int s, World wrld) {
+		brand=mode();
 		setBackground(Color.black);
 		setVisible(true);
 		grphics = gr;
@@ -52,15 +53,25 @@ public class GraphicWorld extends JPanel implements Runnable {
 	public void update(Graphics window) {
 		paint(window);
 	}
+	
+	public int mode(){
+		Scanner scan = new Scanner(System.in);
+		System.out.println("What mode do you want?");
+		System.out.println("0 is normal");
+		System.out.println("1 is pretty mode");
+		System.out.println("2 is seizuriffic");
+		return scan.nextInt();
+		
+	}
 
 	public void paint(Graphics window) {
-		if (mode != 2) window.setColor(Color.black);
+		if (brand != 2) window.setColor(Color.black);
 		else window.setColor(new Color((float)Math.random(),(float)Math.random(),(float)Math.random()));
 		window.fillRect(0, 0, grphics.getWidth(),grphics.getHeight());
-		if(mode == 0) window.setColor(Color.white);
+		if(brand == 0) window.setColor(Color.white);
 		for(int x = 0; x < world.getW(); x++){
 			for(int y = 0; y < world.getH(); y++){
-				if(mode != 0) window.setColor(new Color((float)Math.random(),(float)Math.random(),(float)Math.random()));
+				if(brand != 0) window.setColor(new Color((float)Math.random(),(float)Math.random(),(float)Math.random()));
 				if(table[x][y].isAlive())
 					window.fillRect(x*size, y*size, size, size);
 			}
