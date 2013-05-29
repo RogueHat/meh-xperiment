@@ -39,12 +39,12 @@ public class GraphicWorld extends JPanel implements Runnable {
 		new Thread(this).start();
 	}
 	
-	public GraphicWorld(GraphicsRunner gr, int s, File file) {
+	public GraphicWorld(GraphicsRunner gr, int s, World wrld) {
 		setBackground(Color.black);
 		setVisible(true);
 		grphics = gr;
 		size = s;
-		world = new World(gr.getWidth()/size,gr.getHeight()/size, file);
+		world = wrld;
 		table = world.getWorld();
 		new Thread(this).start();
 	}

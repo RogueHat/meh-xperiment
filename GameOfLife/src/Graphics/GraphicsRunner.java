@@ -14,17 +14,23 @@ import java.io.File;
 
 public class GraphicsRunner extends JFrame
 {
-	private static final int WIDTH = 800;
-	private static final int HEIGHT = 600;
+	private static final int WIDTH = 1024;
+	private static final int HEIGHT = 800;
 
 	public GraphicsRunner()
 	{
-		super("MAKE YOUR OWN SHAPE");
+		super("Game of No Life");
 
 		setSize(WIDTH,HEIGHT);
-
-		//getContentPane().add(new GraphicWorld(this,2,.1));
-		getContentPane().add(new GraphicWorld(this,2, new File("points.txt")));
+		int size = 5;
+		
+		World world = new World(WIDTH/size,HEIGHT/size);
+		world.insertPattern(0, 0, new File("points.txt"),1);
+		world.insertPattern(133, 100, new File("points.txt"),-1);
+		//world.insertPattern(WIDTH/size/2, HEIGHT/size/2, new File("f-pentomino"),1);
+		world.start();
+//		new GraphicWorld(this,2,.1);
+		getContentPane().add(new GraphicWorld(this,size,world));
 
 		setVisible(true);
 

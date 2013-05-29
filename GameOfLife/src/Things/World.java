@@ -13,30 +13,35 @@ public class World implements Runnable {
 		w = xSize;
 		h = ySize;
 		world = new Cell[w][h];
+		for (int x = 0; x < w; x++)
+			for (int y = 0; y < h; y++)
+				world[x][y] = new Cell(false);
 	}
 
 	public World(int xSize, int ySize, File file) {
 		this(xSize, ySize);
-		for (int x = 0; x < w; x++)
-			for (int y = 0; y < h; y++)
-				world[x][y] = new Cell(false);
-		
+		insertPattern(0,0,file,1);
+	}
+
+	public void insertPattern(int xCen, int yCen, File file, int flip){
 		try {
 			Scanner scan = new Scanner(file);
 			while (scan.hasNext())
-				world[scan.nextInt()][scan.nextInt()] = new Cell(true);
+				world[scan.nextInt()*flip+xCen][scan.nextInt()*flip+yCen] = new Cell(true);
 			scan.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
+	
 	public World(int xSize, int ySize, double chance) {
 		this(xSize, ySize);
 		for (int x = 0; x < w; x++)
 			for (int y = 0; y < h; y++)
 				world[x][y] = new Cell(chance);
+	}
+	public void start(){
 		new Thread(this).start();
 	}
 
